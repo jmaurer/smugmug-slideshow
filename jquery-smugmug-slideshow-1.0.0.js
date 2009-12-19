@@ -6,7 +6,7 @@ var img = null;
 var photos = [];
 var photo_index = 0;
 
-var nextSlide = function() {
+nextSlide = function() {
   img.attr("src", photos[photo_index]);
   photo_index += 1;
   if (photo_index >= photos.length)
