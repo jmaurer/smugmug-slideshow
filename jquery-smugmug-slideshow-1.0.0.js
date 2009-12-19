@@ -6,7 +6,7 @@ var img = null;
 var photos = [];
 var photo_index = 0;
 
-nextSlide = function() {
+var nextSlide = function() {
   img.attr("src", photos[photo_index]);
   photo_index += 1;
   if (photo_index >= photos.length)
@@ -15,23 +15,21 @@ nextSlide = function() {
 
 $.fn.slideShow = function(options) {
 	var albumID = options.albumID;
-	var size = options.size;
+	var size = options.size || "Medium";
+	var delay = options.delay || 3000;
 	
 	// Setup div
 	this.empty();
 	this.append("<img>");
 	img = this.find("img");
 	
-	console.log(this);
-	
 	$.smugmug.login.anonymously(function() {
-		console.log("SlideShow!!!");
 		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, function(images) {
 			$.each(images.Images, function() {
 				photos.push(this[size + "URL"]);
 			});
 			
-	    setInterval( "nextSlide()", 1000 );
+	    setInterval( "nextSlide()", delay );
 			nextSlide();
 		});
 	});
