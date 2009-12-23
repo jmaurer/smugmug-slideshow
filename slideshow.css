@@ -1,4 +1,9 @@
-.fc-day-content {
-	margin: auto;
-	text-align: center;
+div#slideshow img {  
+    padding: 15px;  
+    border:  1px solid #ccc;  
+    background-color: #eee;  
+/*    width:  200px; 
+    height: 200px; 
+*/    top:  0; 
+    left: 0 
 }
