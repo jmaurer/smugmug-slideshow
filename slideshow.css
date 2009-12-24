@@ -1,9 +1,16 @@
+div#slide2, div#slideshow {
+	float: left;
+	margin: 15px;
+}
+
+div#slide2 img,
 div#slideshow img {  
     padding: 15px;  
     border:  1px solid #ccc;  
     background-color: #eee;  
 /*    width:  200px; 
     height: 200px; 
-*/    top:  0; 
-    left: 0 
+*/    
+    top:  0; 
+    left: 0;
 }
