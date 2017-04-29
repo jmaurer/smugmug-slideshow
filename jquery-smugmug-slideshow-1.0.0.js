@@ -1,11 +1,11 @@
-(function($) {
+(($ => {
 	
 var ss = $.slideShow = {};
 var img = null;
 var photos = [];
 var photo_index = 0;
 
-nextSlide = function() {
+nextSlide = () => {
   img.attr("src", photos[photo_index]);
   photo_index += 1;
   if (photo_index >= photos.length)
@@ -22,8 +22,8 @@ $.fn.slideShow = function(options) {
 	this.append("<img>");
 	img = this.find("img");
 	
-	$.smugmug.login.anonymously(function() {
-		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, function(images) {
+	$.smugmug.login.anonymously(() => {
+		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, images => {
 			$.each(images.Images, function() {
 				photos.push(this[size + "URL"]);
 			});
@@ -42,8 +42,8 @@ $.fn.smugmugCycle = function(options) {
 	// Setup div
 	var div = this;
 
-	$.smugmug.login.anonymously(function() {
-		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, function(images) {
+	$.smugmug.login.anonymously(() => {
+		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, images => {
 			$.each(images.Images, function() {
 				var url = this[size + "URL"];
 				// photos.push(this[size + "URL"]);
@@ -63,8 +63,8 @@ $.fn.addSmugmugImages = function(options) {
 	// Setup div
 	var div = this;
 	
-	$.smugmug.login.anonymously(function() {
-		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, function(images) {
+	$.smugmug.login.anonymously(() => {
+		$.smugmug.images.get({AlbumID: albumID, Heavy: 1}, images => {
 			$.each(images.Images, function() {
 				var url = this[size + "URL"];
 				// photos.push(this[size + "URL"]);
@@ -80,6 +80,6 @@ $.fn.addSmugmugImages = function(options) {
 
 };
 
-})(jQuery);
+}))(jQuery);
 
 // http://photos.hurleyhome.com/2009/xmas/2009-12-09/IMG0021/736786636_oVM2Q-S.jpg
