@@ -1,6 +1,6 @@
-(function($) {
+(($ => {
 	
-	$.smugmug = function() {
+	$.smugmug = () => {
 		alert("Smugmug Rocks");
 	}
 	
@@ -14,7 +14,7 @@
 	$.smugmug.APIKey = "MAukm4dbY4HtE1JSbA2tZ48mIYt3rJO8";
     $.smugmug.session_id = "XXX";
 
-	$.smugmug.apiCall = function(method, params, callback, use_https) {
+	$.smugmug.apiCall = (method, params, callback, use_https) => {
 		params.method = method;
 		params.APIKey = $.smugmug.APIKey;
 
@@ -140,13 +140,13 @@
 			pos = pos[chunk];
 		}
 
-		pos[mname] = function(params, callback) {
+		pos[mname] = (params, callback) => {
 			if (!params) params = {};
 			return $.smugmug.apiCall(method, params, callback);
 		};
     });
 
-	$.smugmug.login.withPassword = function(email, pass, callback) {
+	$.smugmug.login.withPassword = (email, pass, callback) => {
 		if (typeof(email) == "object")
 		{
 			callback = email.callback;
@@ -157,13 +157,13 @@
 		$.smugmug.apiCall("smugmug.login.withPassword", {
 			EmailAddress: email,
 			Password: pass
-		}, function(data) {
+		}, data => {
 			$.smugmug.session_id = data.Login.Session.id;
 			if (callback) callback();
 			}, true);
 		};
 	
-		$.smugmug.login.withHash = function(email, hash, callback) {
+		$.smugmug.login.withHash = (email, hash, callback) => {
 			if (typeof(email) == "object")
 			{
 				callback = email.callback;
@@ -174,17 +174,17 @@
 			$.smugmug.apiCall("smugmug.login.withPassword", {
 				EmailAddress: email,
 				PasswordHash: hash
-			}, function(data) {
+			}, data => {
 				$.smugmug.session_id = data.Login.Session.id;
 				if (callback) callback();
 				}, true);
 			};
 
-			$.smugmug.login.anonymously = function(callback) {
-				$.smugmug.apiCall("smugmug.login.anonymously", {}, function(data) {
+			$.smugmug.login.anonymously = callback => {
+				$.smugmug.apiCall("smugmug.login.anonymously", {}, data => {
 					$.smugmug.session_id = data.Login.Session.id;
 					if (callback) callback();
 					}, true);
 				};
 
-})(jQuery);
+}))(jQuery);
